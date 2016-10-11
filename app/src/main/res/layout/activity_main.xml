@@ -33,7 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:id="@+id/submit"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignEnd="@+id/grid" />
+        android:id="@+id/buttonSubmit"
+        android:onClick="buttonSubmit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+
 </RelativeLayout>
