@@ -22,15 +22,18 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    int presentId;
     private TableLayout tableLayout;
     private int NUM_ROWS=4;
     Map<Integer, String> myMap = new HashMap<Integer, String>();
+    final ArrayList<Integer> al=new ArrayList<Integer>();
     private  int NUM_COLS=4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ArrayList<Integer> al=new ArrayList<Integer>();
+
         tableLayout = (TableLayout) findViewById(R.id.grid);
         TextView tv = null;
         ViewGroup tvLayParams = null;
@@ -57,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onTouch(View v, MotionEvent event) {
                         if(event.getAction() == MotionEvent.ACTION_UP){
 
+
+
+
+
+
                             // Do what you want
                             Calendar c = Calendar.getInstance();
                             int currentMinutes = c.get(Calendar.MINUTE);
@@ -65,7 +73,23 @@ public class MainActivity extends AppCompatActivity {
                             int id= charTile.getId();
                             int row = id/NUM_ROWS;
                             int column = id%NUM_ROWS;
-                            charTile.setBackgroundColor(Color.BLUE);
+
+                            //setting present rows and present columns
+
+                            presentId = fetchId(row,column);
+
+                            if(al.size() == 1)
+                            {
+                                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                                backTemp1.setClickable(false);
+                            }
+                            if(al.size() != 1)
+                            {
+                                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                                backTemp1.setClickable(true);
+                            }
+
+                                    charTile.setBackgroundColor(Color.BLUE);
                             //disabling all tiles
                             for(int j = 0;j<NUM_ROWS*NUM_COLS;j++)
                             {
@@ -101,13 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 temp.setClickable(true);
                             }
-                            if(row>=0 && column>=0 && row< NUM_ROWS && column<NUM_COLS)
-                            {
-                                TextView temp = (TextView) findViewById(fetchId(row,column));
-                                Log.e("cbc",""+row+""+column+""+fetchId(row,column));
 
-                                temp.setClickable(true);
-                            }
                             if(row>=0 && column-1>=0 && row< NUM_ROWS && column-1<NUM_COLS)
                             {
                                 TextView temp = (TextView) findViewById(fetchId(row,column-1));
@@ -177,4 +195,110 @@ public class MainActivity extends AppCompatActivity {
         return row*NUM_ROWS + col;
     }
 
+    public void clickBack(View view) {
+        TextView backTemp = (TextView)findViewById(R.id.button);
+        backTemp.setClickable(true);
+
+        TextView temp2 = (TextView)findViewById(presentId);
+        temp2.setBackgroundColor(Color.parseColor("#debebe"));
+
+        int lenAL = al.size();
+        al.remove(lenAL-1);
+
+
+        int targetId = al.get(lenAL - 2);
+
+        TextView temp1 = (TextView) findViewById(targetId);
+        int row = targetId/NUM_ROWS;
+        int column = targetId%NUM_ROWS;
+
+
+        //disabling all tiles
+        for(int j = 0;j<NUM_ROWS*NUM_COLS;j++)
+        {
+            TextView temp = (TextView) findViewById(j);
+
+            temp.setClickable(false);
+        }
+
+
+        //get adjacent ids
+        if(row-1>=0 && column-1>=0 && row-1< NUM_ROWS && column-1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row-1,column-1));
+
+
+            temp.setClickable(true);
+        }
+        if(row+1>=0 && column+1>=0 && row+1< NUM_ROWS && column+1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row+1,column+1));
+
+            temp.setClickable(true);
+        }
+        if(row-1>=0 && column+1>=0 && row-1< NUM_ROWS && column+1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row-1,column+1));
+
+            temp.setClickable(true);
+        }
+        if(row-1>=0 && column>=0 && row-1< NUM_ROWS && column<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row-1,column));
+
+            temp.setClickable(true);
+        }
+
+        if(row>=0 && column-1>=0 && row< NUM_ROWS && column-1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row,column-1));
+
+            temp.setClickable(true);
+        }
+        if(row>=0 && column+1>=0 && row< NUM_ROWS && column+1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row,column+1));
+
+            temp.setClickable(true);
+        }
+        if(row+1>=0 && column>=0 && row+1< NUM_ROWS && column<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row+1,column));
+
+            temp.setClickable(true);
+        }
+        if(row+1>=0 && column-1>=0 && row+1< NUM_ROWS && column-1<NUM_COLS)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row+1,column-1));
+
+            temp.setClickable(true);
+        }
+
+        String check = "";
+        for(int x=0;x<al.size();x++)
+        {
+            TextView temp = (TextView) findViewById(fetchId(row,column));
+            check = check+ temp.getText();
+        }
+
+        presentId = al.get(al.size()-1);
+
+
+        if(al.size() == 1)
+        {
+            TextView backTemp1 = (TextView)findViewById(R.id.button);
+            backTemp1.setClickable(false);
+        }
+        if(al.size() != 1)
+        {
+            TextView backTemp1 = (TextView)findViewById(R.id.button);
+            backTemp1.setClickable(true);
+        }
+
+
+        Toast.makeText(getApplicationContext(), " row= "+check,
+                Toast.LENGTH_LONG).show();
+
+
+    }
 }
