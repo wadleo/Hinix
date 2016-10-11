@@ -13,9 +13,10 @@
 
     <Button
         android:id="@+id/play"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/radiogrp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="PLAY!"
         android:layout_centerHorizontal="true"/>
 
@@ -24,7 +25,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/play"
+        android:layout_marginTop="10dp"
         android:text="Instructions"
         android:layout_centerHorizontal="true"/>
-    
+
+    <RadioGroup
+        android:id="@+id/radiogrp"
+        android:layout_below="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/easy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easy"/>
+        <RadioButton
+            android:id="@+id/moderate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderate"/>
+        <RadioButton
+            android:id="@+id/hard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hard"/>
+    </RadioGroup>
 </RelativeLayout>

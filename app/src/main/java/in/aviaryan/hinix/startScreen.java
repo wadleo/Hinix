@@ -6,6 +6,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 /**
  * Created by nilesh on 11/10/16.
@@ -13,7 +16,9 @@ import android.widget.Button;
 
 public class startScreen extends AppCompatActivity {
 
-    Button play, instruction;
+    private Button play, instruction;
+    private RadioGroup rg;
+    private RadioButton rb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +33,17 @@ public class startScreen extends AppCompatActivity {
 
             }
         });
-
+        rg = (RadioGroup) findViewById(R.id.radiogrp);
+        //final String value = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
+        int selectedId = rg.getCheckedRadioButtonId();
+        rb = (RadioButton) findViewById(selectedId);
+//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+//        {
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//
+//                Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
+//            }
+//        });
         instruction= (Button) findViewById(R.id.instr);
         instruction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +61,7 @@ public class startScreen extends AppCompatActivity {
                                 "2. There is a timer associated with each game. You are supposed to reach that maximum target in the given time.\n" +
                                 "A fixed no. of points you get in each game. These points gets deducted based on the difference on the no. of possible words and your score.\n" +
                                 "The game ends as soon as these points get over.\n" +
-                                "Lastly you can challenge the game to show you all the possible words.");
+                                "Lastly you can challenge the game to show you all the possible words.\n\n");
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -54,5 +69,10 @@ public class startScreen extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+    }
+
+    public void level(){
+
     }
 }
