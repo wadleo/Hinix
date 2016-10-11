@@ -206,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
         al.remove(lenAL-1);
 
 
+
+
         int targetId = al.get(lenAL - 2);
 
         TextView temp1 = (TextView) findViewById(targetId);
