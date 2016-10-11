@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
                             presentId = fetchId(row,column);
 
-                            if(al.size() == 1)
+                            if(al.size() == 0)
                             {
                                 TextView backTemp1 = (TextView)findViewById(R.id.button);
                                 backTemp1.setClickable(false);
                             }
-                            if(al.size() != 1)
+                            if(al.size() != 0)
                             {
                                 TextView backTemp1 = (TextView)findViewById(R.id.button);
                                 backTemp1.setClickable(true);
@@ -206,100 +206,105 @@ public class MainActivity extends AppCompatActivity {
         al.remove(lenAL-1);
 
 
-
-
-        int targetId = al.get(lenAL - 2);
-
-        TextView temp1 = (TextView) findViewById(targetId);
-        int row = targetId/NUM_ROWS;
-        int column = targetId%NUM_ROWS;
-
-
-        //disabling all tiles
-        for(int j = 0;j<NUM_ROWS*NUM_COLS;j++)
+        if(lenAL - 2 < 0)
         {
-            TextView temp = (TextView) findViewById(j);
-
-            temp.setClickable(false);
+            if(al.size() == 0)
+            {
+                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                backTemp1.setClickable(false);
+            }
+            if(al.size() != 0)
+            {
+                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                backTemp1.setClickable(true);
+            }
         }
+        else {
+
+            int targetId = al.get(lenAL - 2);
 
 
-        //get adjacent ids
-        if(row-1>=0 && column-1>=0 && row-1< NUM_ROWS && column-1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row-1,column-1));
+            TextView temp1 = (TextView) findViewById(targetId);
+            int row = targetId / NUM_ROWS;
+            int column = targetId % NUM_ROWS;
 
 
-            temp.setClickable(true);
+            //disabling all tiles
+            for (int j = 0; j < NUM_ROWS * NUM_COLS; j++) {
+                TextView temp = (TextView) findViewById(j);
+
+                temp.setClickable(false);
+            }
+
+
+            //get adjacent ids
+            if (row - 1 >= 0 && column - 1 >= 0 && row - 1 < NUM_ROWS && column - 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row - 1, column - 1));
+
+
+                temp.setClickable(true);
+            }
+            if (row + 1 >= 0 && column + 1 >= 0 && row + 1 < NUM_ROWS && column + 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row + 1, column + 1));
+
+                temp.setClickable(true);
+            }
+            if (row - 1 >= 0 && column + 1 >= 0 && row - 1 < NUM_ROWS && column + 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row - 1, column + 1));
+
+                temp.setClickable(true);
+            }
+            if (row - 1 >= 0 && column >= 0 && row - 1 < NUM_ROWS && column < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row - 1, column));
+
+                temp.setClickable(true);
+            }
+
+            if (row >= 0 && column - 1 >= 0 && row < NUM_ROWS && column - 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row, column - 1));
+
+                temp.setClickable(true);
+            }
+            if (row >= 0 && column + 1 >= 0 && row < NUM_ROWS && column + 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row, column + 1));
+
+                temp.setClickable(true);
+            }
+            if (row + 1 >= 0 && column >= 0 && row + 1 < NUM_ROWS && column < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row + 1, column));
+
+                temp.setClickable(true);
+            }
+            if (row + 1 >= 0 && column - 1 >= 0 && row + 1 < NUM_ROWS && column - 1 < NUM_COLS) {
+                TextView temp = (TextView) findViewById(fetchId(row + 1, column - 1));
+
+                temp.setClickable(true);
+            }
+
+            String check = "";
+            for (int x = 0; x < al.size(); x++) {
+                TextView temp = (TextView) findViewById(fetchId(row, column));
+                check = check + temp.getText();
+            }
+
+            presentId = al.get(al.size() - 1);
+
+
+            Toast.makeText(getApplicationContext(), " row= " + check,
+                    Toast.LENGTH_LONG).show();
+
+            if(al.size() == 0)
+            {
+                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                backTemp1.setClickable(false);
+            }
+            if(al.size() != 0)
+            {
+                TextView backTemp1 = (TextView)findViewById(R.id.button);
+                backTemp1.setClickable(true);
+            }
+
         }
-        if(row+1>=0 && column+1>=0 && row+1< NUM_ROWS && column+1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row+1,column+1));
-
-            temp.setClickable(true);
-        }
-        if(row-1>=0 && column+1>=0 && row-1< NUM_ROWS && column+1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row-1,column+1));
-
-            temp.setClickable(true);
-        }
-        if(row-1>=0 && column>=0 && row-1< NUM_ROWS && column<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row-1,column));
-
-            temp.setClickable(true);
-        }
-
-        if(row>=0 && column-1>=0 && row< NUM_ROWS && column-1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row,column-1));
-
-            temp.setClickable(true);
-        }
-        if(row>=0 && column+1>=0 && row< NUM_ROWS && column+1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row,column+1));
-
-            temp.setClickable(true);
-        }
-        if(row+1>=0 && column>=0 && row+1< NUM_ROWS && column<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row+1,column));
-
-            temp.setClickable(true);
-        }
-        if(row+1>=0 && column-1>=0 && row+1< NUM_ROWS && column-1<NUM_COLS)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row+1,column-1));
-
-            temp.setClickable(true);
-        }
-
-        String check = "";
-        for(int x=0;x<al.size();x++)
-        {
-            TextView temp = (TextView) findViewById(fetchId(row,column));
-            check = check+ temp.getText();
-        }
-
-        presentId = al.get(al.size()-1);
-
-
-        if(al.size() == 1)
-        {
-            TextView backTemp1 = (TextView)findViewById(R.id.button);
-            backTemp1.setClickable(false);
-        }
-        if(al.size() != 1)
-        {
-            TextView backTemp1 = (TextView)findViewById(R.id.button);
-            backTemp1.setClickable(true);
-        }
-
-
-        Toast.makeText(getApplicationContext(), " row= "+check,
-                Toast.LENGTH_LONG).show();
 
 
     }
