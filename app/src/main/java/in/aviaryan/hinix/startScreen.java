@@ -39,11 +39,13 @@ public class startScreen extends AppCompatActivity {
         rg = (RadioGroup) findViewById(R.id.radiogrp);
         //final String value = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
          selectedId = rg.getCheckedRadioButtonId();
-        rb = (RadioButton) findViewById(selectedId);
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        //rb = (RadioButton) findViewById(selectedId);
+       rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+
+                selectedId=checkedId;
                 Toast.makeText(getBaseContext(), selectedId+"", Toast.LENGTH_SHORT).show();
             }
         });

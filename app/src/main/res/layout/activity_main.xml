@@ -20,17 +20,11 @@
             android:layout_height="wrap_content"
             android:text="Current_Score:23"
             android:id="@+id/current"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Time_Left:0"
-            android:id="@+id/time"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:text="MAX_Score:23"
             android:id="@+id/max"/>
 
@@ -48,5 +42,12 @@
         android:padding="10dp"
         android:gravity="center_horizontal">
     </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </RelativeLayout>
