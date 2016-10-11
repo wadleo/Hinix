@@ -43,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(al.size() == 0)
+        {
+            for(int i=0;i<NUM_ROWS;i++)
+            {
+                for(int j=0;j<NUM_COLS;j++)
+                {
+                    TextView viewRefresh = (TextView)findViewById(fetchId(i,j));
+                    viewRefresh.setClickable(true);
+                }
+            }
+        }
+
         tableLayout = (TableLayout) findViewById(R.id.grid);
         TextView tv = null;
         ViewGroup tvLayParams = null;
@@ -72,17 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         if(event.getAction() == MotionEvent.ACTION_UP){
 
 
-                            if(al.size() == 0)
-                            {
-                                for(int i=0;i<NUM_ROWS;i++)
-                                {
-                                    for(int j=0;j<NUM_COLS;j++)
-                                    {
-                                        TextView viewRefresh = (TextView)findViewById(fetchId(i,j));
-                                        viewRefresh.setClickable(true);
-                                    }
-                                }
-                            }
+
 
 
 
