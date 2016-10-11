@@ -333,6 +333,15 @@ public class MainActivity extends AppCompatActivity {
                 undo();
             }
 
+            for(int i=0;i<NUM_ROWS;i++)
+            {
+                for(int j=0;j<NUM_COLS;j++)
+                {
+                    TextView viewRefresh = (TextView)findViewById(fetchId(i,j));
+                    viewRefresh.setClickable(true);
+                }
+            }
+
             int lenMap = chodu.size();
             String tempString = "";
             //appending the string of text view
