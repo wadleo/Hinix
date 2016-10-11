@@ -63,11 +63,26 @@ public class MainActivity extends AppCompatActivity {
                 charTile.setBackground(getDrawable(R.drawable.border));
                 charTile.setId(NUM_ROWS * i + j);
                 charTile.setText("A");
+                final int icopy = i;
+                final int jcopy =j;
 
                 charTile.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if(event.getAction() == MotionEvent.ACTION_UP){
+
+
+                            if(al.size() == 0)
+                            {
+                                for(int i=0;i<NUM_ROWS;i++)
+                                {
+                                    for(int j=0;j<NUM_COLS;j++)
+                                    {
+                                        TextView viewRefresh = (TextView)findViewById(fetchId(i,j));
+                                        viewRefresh.setClickable(true);
+                                    }
+                                }
+                            }
 
 
 
@@ -85,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
                             //setting present rows and present columns
 
-                            presentId = fetchId(row,column);
+                            presentId = fetchId(icopy,jcopy);
 
                             if(al.size() == 0)
                             {
@@ -169,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
                             String check = "";
                             for(int x=0;x<al.size();x++)
                             {
-                                TextView temp = (TextView) findViewById(fetchId(row,column));
+
+
+                                TextView temp = (TextView) findViewById(presentId);
                                 check = check+ temp.getText();
                             }
                             presentWord = check;
@@ -358,6 +375,14 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
+            for(int i=0;i<NUM_ROWS;i++)
+            {
+                for(int j=0;j<NUM_COLS;j++)
+                {
+                    TextView viewRefresh = (TextView)findViewById(fetchId(i,j));
+                    viewRefresh.setClickable(true);
+                }
+            }
             Toast.makeText(getApplicationContext(), " Wrong Word bro !!",
                     Toast.LENGTH_LONG).show();
         }
