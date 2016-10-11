@@ -2,31 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ACC1">
-<ImageView
-    android:id="@+id/title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:layout_centerHorizontal="true"
-    android:src="@drawable/logo"/>
+    android:background="#1B5E20">
 
     <Button
         android:id="@+id/play"
         android:layout_below="@+id/radiogrp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:elevation="10dp"
         android:text="PLAY!"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/instr"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/play"
         android:layout_marginTop="10dp"
-        android:text="Instructions"
+        android:background="@drawable/button"
+        android:elevation="10dp"
+        android:text="INSTRUCTIONS"
         android:layout_centerHorizontal="true"/>
 
     <RadioGroup
@@ -41,16 +39,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Easy"/>
+            android:textColor="#EEEEEE"
+            android:text="Easy"
+            android:buttonTint="#ffffff"
+            android:layout_marginRight="5dp"/>
         <RadioButton
             android:id="@+id/moderate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moderate"/>
+            android:text="Moderate"
+            android:textColor="#EEEEEE"
+            android:buttonTint="#ffffff"/>
         <RadioButton
             android:id="@+id/hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hard"/>
+            android:text="Hard"
+            android:textColor="#EEEEEE"
+            android:buttonTint="#ffffff"/>
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
