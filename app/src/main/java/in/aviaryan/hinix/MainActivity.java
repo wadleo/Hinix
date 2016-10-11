@@ -337,6 +337,13 @@ public class MainActivity extends AppCompatActivity {
             String tempString = "";
             //appending the string of text view
 
+            TextView screen = (TextView)findViewById(R.id.textScreen);
+            tempString = (String)screen.getText() +"***" +temp;
+
+            screen.setText(tempString);
+
+
+
             Toast.makeText(getApplicationContext(), " Wrong Word bro !!",
                     Toast.LENGTH_LONG).show();
 
