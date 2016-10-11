@@ -1,6 +1,7 @@
 package in.aviaryan.hinix;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -25,13 +26,17 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
 
     private TableLayout tableLayout;
-    private int NUM_ROWS=4;
-    private  int NUM_COLS=4;
+    private int NUM_ROWS=5;
+    private  int NUM_COLS=5;
     private int fontSize=18;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent mIntent = getIntent();
+        int Level = mIntent.getIntExtra("Level", 3);
+        Log.e("Level",Level+"");
+
         tableLayout = (TableLayout) findViewById(R.id.grid);
        int tableHeight= tableLayout.getLayoutParams().height;
         int tableWidth= tableLayout.getLayoutParams().width;
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 charTile.setId(NUM_ROWS * i + j);
                 charTile.setTypeface(null, Typeface.BOLD);
                 charTile.setText("A");
+                charTile.setTextColor(Color.parseColor("#FFFFFF"));
                 charTile.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 tr.addView(charTile);
                 charTile.setOnTouchListener(new View.OnTouchListener() {

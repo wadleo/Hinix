@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import static android.R.attr.value;
+
 /**
  * Created by nilesh on 11/10/16.
  */
@@ -19,6 +21,7 @@ public class startScreen extends AppCompatActivity {
     private Button play, instruction;
     private RadioGroup rg;
     private RadioButton rb;
+    private  int selectedId=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,21 +32,21 @@ public class startScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i =new Intent(startScreen.this, MainActivity.class);
+                i.putExtra("Level",selectedId);
                 startActivity(i);
-
             }
         });
         rg = (RadioGroup) findViewById(R.id.radiogrp);
         //final String value = ((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString();
-        int selectedId = rg.getCheckedRadioButtonId();
+         selectedId = rg.getCheckedRadioButtonId();
         rb = (RadioButton) findViewById(selectedId);
-//        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-//        {
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//
-//                Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                Toast.makeText(getBaseContext(), selectedId+"", Toast.LENGTH_SHORT).show();
+            }
+        });
         instruction= (Button) findViewById(R.id.instr);
         instruction.setOnClickListener(new View.OnClickListener() {
             @Override
