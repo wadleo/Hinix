@@ -353,8 +353,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            Toast.makeText(getApplicationContext(), " Wrong Word bro !!",
-                    Toast.LENGTH_LONG).show();
+
 
         }
         else
